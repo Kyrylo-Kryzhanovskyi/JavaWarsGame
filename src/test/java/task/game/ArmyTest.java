@@ -170,7 +170,7 @@ public class ArmyTest {
         assertTrue(fight(army1, army2));
     }
     @Test
-    @DisplayName("15. Battle: armies with Lancers, Vampires, Warriors, and Defenders; first lose")
+    @DisplayName("15. Battle: army of 5 Lancers, 3 Vampires, 4 Warriors, 2 Defenders vs army of 4 Warriors, 4 Defenders,6 Vampires, 5 Lancers; first lose")
     void test15() {
         var army1 = new Army()
                 .addUnits(LANCER, 5)
@@ -186,7 +186,7 @@ public class ArmyTest {
     }
 
     @Test
-    @DisplayName("16. Battle: armies with Lancers, Vampires, Warriors, and Defenders; first win")
+    @DisplayName("16. Battle: army of 7 Lancers, 3 Vampires, 4 Warriors, 2 Defenders vs army of 4 Warriors, 4 Defenders,6 Vampires, 4 Lancers ; first win")
     void test16() {
         var army1 = new Army()
                 .addUnits(LANCER, 7)
@@ -211,7 +211,41 @@ public class ArmyTest {
                 .addUnits(WARRIOR, 1);
         assertFalse(fight(armyWarrior, armyLancer));
     }
-
+//"18. Battle": [
+//    prepare_test(middle_code='''army_1 = Army()
+//            army_2 = Army()
+//army_1.add_units(Lancer, 1)
+//            army_1.add_units(Warrior, 3)
+//            army_1.add_units(Healer, 1)
+//            army_1.add_units(Warrior, 4)
+//            army_1.add_units(Healer, 1)
+//            army_1.add_units(Knight, 2)
+//            army_2.add_units(Warrior, 4)
+//            army_2.add_units(Defender, 4)
+//            army_2.add_units(Healer, 1)
+//            army_2.add_units(Vampire, 6)
+//            army_2.add_units(Lancer, 4)
+//    battle = Battle()''',
+//    test="battle.fight(army_1, army_2)",
+//    answer=False)
+//            ]
+@Test
+@DisplayName("18. Battle: army of 3 Warriors,1 Healer, 4 Warriors, 1 Healer, 2 Knights vs army of 4 Warriors, 4 Defenders, 1 Healer, 6 Vampire, 4 Lancer  ; first win")
+void test18() {
+    var army_1 = new Army()
+            .addUnits(WARRIOR, 3)
+            .addUnits(HEALER, 1)
+            .addUnits(WARRIOR, 4)
+            .addUnits(HEALER, 1)
+            .addUnits(KNIGHT, 2);
+    var army_2 = new Army()
+            .addUnits(WARRIOR, 4)
+            .addUnits(DEFENDER, 4)
+            .addUnits(HEALER, 1)
+            .addUnits(VAMPIRE, 6)
+            .addUnits(LANCER, 4);
+    assertFalse(fight(army_1, army_2));
+}
     @Test
     void lancerArmySmokeTest() {
         var my_army = new Army ()

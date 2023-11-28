@@ -16,7 +16,9 @@ implements CanHitAndReportMixin{
             var nextBehind = warriorInArmy.getWarriorBehind();
             if (nextBehind.isPresent()) {
                 int secondDamage = damageDealt * PENETRATION / 100;
-                nextBehind.get().acceptDamage(secondDamage);
+                CanHit proxy = () -> secondDamage;
+                proxy.hit(nextBehind.get());
+//                nextBehind.get().acceptDamage(secondDamage);
             }
         }
     }
