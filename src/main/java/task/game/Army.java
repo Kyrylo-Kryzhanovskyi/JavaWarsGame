@@ -1,7 +1,5 @@
 package task.game;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -10,8 +8,8 @@ import java.util.function.Supplier;
 
 public class Army implements Iterable<Warrior> {
     private static int idCounter;
-    private Queue<Warrior> troops = new ArrayDeque<>();
-    private int id = ++idCounter;
+    private final Queue<Warrior> troops = new ArrayDeque<>();
+    private final int id = ++idCounter;
     public Army addUnits(WarriorClasses warriorClasses, int quantity) {
         return addUnits(warriorClasses::make, quantity);
     }

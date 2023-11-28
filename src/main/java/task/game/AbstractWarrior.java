@@ -5,8 +5,8 @@ package task.game;
 public abstract class AbstractWarrior implements Warrior{
     private static int idCounter = 0;
     private int health;
-    private int initialHealth;
-    private int id = ++idCounter;
+    private final int initialHealth;
+    private final int id = ++idCounter;
     public AbstractWarrior(int health) {
         this.health = health;
         this.initialHealth = health;

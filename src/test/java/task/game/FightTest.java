@@ -77,8 +77,8 @@ class FightTest {
         Warrior unit_2 = DEFENDER.make();
         assertAll(
                 ()->assertFalse(fight(unit_1, unit_2)),
-                ()->assertEquals(-1, ((AbstractWarrior)unit_1).getHealth()),
-                ()-> assertEquals(9, ((AbstractWarrior)unit_2).getHealth())
+                ()->assertEquals(-1, unit_1.getHealth()),
+                ()-> assertEquals(9, unit_2.getHealth())
         );
     }
     @Test
@@ -87,7 +87,7 @@ class FightTest {
         var unit1 = DEFENDER.make();
         var unit2 = new Rookie();
         fight(unit1, unit2);
-        assertEquals(60, ((AbstractWarrior)unit1).getHealth());
+        assertEquals(60, unit1.getHealth());
     }
 
     @Test
@@ -107,8 +107,8 @@ class FightTest {
         Warrior unit_2 = VAMPIRE.make();
         assertAll(
                 ()->assertTrue(fight(unit_1, unit_2)),
-                ()->assertEquals(22, ((AbstractWarrior)unit_1).getHealth()),
-                ()-> assertEquals(-1, ((AbstractWarrior)unit_2).getHealth())
+                ()->assertEquals(22, unit_1.getHealth()),
+                ()-> assertEquals(-1, unit_2.getHealth())
         );
     }
     @Test
@@ -134,7 +134,7 @@ class FightTest {
         assertTrue(fight(lancelot, rog));
 
     }
-    private class Rookie extends AbstractWarrior{
+    private static class Rookie extends AbstractWarrior{
         static final int INITIAL_HEALTH = 50;
         static final int ATTACK = 1;
 
@@ -144,7 +144,7 @@ class FightTest {
 
         @Override
         public int getAttack() {
-            return 0;
+            return ATTACK;
         }
     }
 }
