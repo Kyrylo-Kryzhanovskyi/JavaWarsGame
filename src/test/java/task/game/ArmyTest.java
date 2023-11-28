@@ -212,7 +212,29 @@ public class ArmyTest {
         assertFalse(fight(armyWarrior, armyLancer));
     }
 
-
+    @Test
+    void lancerArmySmokeTest() {
+        var my_army = new Army ()
+                .addUnits(DEFENDER, 2)
+                .addUnits(VAMPIRE, 2)
+                .addUnits(LANCER, 4)
+                .addUnits(WARRIOR, 1);
+        var enemy_army = new Army ()
+                .addUnits(WARRIOR, 2)
+                .addUnits(LANCER, 2)
+                .addUnits(DEFENDER, 2)
+                .addUnits(VAMPIRE, 3);
+        var army_3 = new Army()
+                .addUnits(WARRIOR, 1)
+                .addUnits(LANCER, 1)
+                .addUnits(DEFENDER, 2);
+        var army_4 = new Army ()
+                .addUnits(VAMPIRE, 3)
+                .addUnits(WARRIOR, 1)
+                .addUnits(LANCER, 2);
+        assertTrue(fight(my_army, enemy_army));
+        assertFalse(fight(army_3, army_4));
+    }
     @Test
     void defenderArmySmokeTest() {
         var my_army = new Army().addUnits(DEFENDER, 1);

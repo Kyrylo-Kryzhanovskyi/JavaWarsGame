@@ -111,6 +111,7 @@ class FightTest {
                 ()-> assertEquals(-1, unit_2.getHealth())
         );
     }
+
     @Test
     void defenderFightSmokeTest() {
         var chuck = WARRIOR.make();
@@ -132,6 +133,38 @@ class FightTest {
         assertFalse(carl.isAlive());
         assertFalse(fight(bob, mike));
         assertTrue(fight(lancelot, rog));
+    }
+    @Test
+    void lancerFightSmokeTest() {
+        var chuck = WARRIOR.make();
+        var bruce = WARRIOR.make();
+        var carl = KNIGHT.make();
+        var dave = WARRIOR.make();
+        var mark = WARRIOR.make();
+        var bob = DEFENDER.make();
+        var mike = KNIGHT.make();
+        var rog = WARRIOR.make();
+        var lancelot = DEFENDER.make();
+        var eric = VAMPIRE.make();
+        var adam = VAMPIRE.make();
+        var richard = DEFENDER.make();
+        var ogre = WARRIOR.make();
+        var freelancer = LANCER.make();
+        var vampire = VAMPIRE.make();
+        assertTrue(fight (chuck, bruce));
+        assertFalse(fight (dave, carl));
+        assertTrue(chuck.isAlive());
+        assertFalse(bruce.isAlive());
+        assertTrue(carl.isAlive());
+        assertFalse (dave.isAlive());
+        assertFalse(fight (carl, mark));
+        assertFalse(carl.isAlive());
+        assertFalse(fight(bob, mike));
+        assertTrue(fight (lancelot, rog));
+        assertFalse(fight(eric, richard));
+        assertTrue(fight (ogre, adam));
+        assertTrue(fight (freelancer, vampire));
+        assertTrue(freelancer.isAlive());
 
     }
     private static class Rookie extends AbstractWarrior{

@@ -1,6 +1,7 @@
 package task.game;
 
-public class VampireImpl extends AbstractWarrior{
+public class VampireImpl extends AbstractWarrior
+implements CanHitAndReportMixin{
     static final int ATTACK = 4;
     static final int INITIAL_HEALTH = 40;
     static final int VAMPIRISM = 50;
@@ -10,15 +11,11 @@ public class VampireImpl extends AbstractWarrior{
 
     @Override
     public void hit(CanAcceptDamage enemy) {
-        if (enemy instanceof AbstractWarrior awSecond){
-            var healthBefore = awSecond.getHealth();
-            super.hit(enemy);
-            var healthAfter = awSecond.getHealth();
-            var damageDealt = healthBefore - healthAfter;
-            var healing = damageDealt * getVampirism() / 100;
-            setHealth(getHealth() + healing);
-        }
+        var damageDealt = hitAndReportDealtDamage(enemy);
+        var healing = damageDealt * getVampirism() / 100;
+        setHealth(getHealth() + healing);
     }
+
     public int getVampirism() {
         return VAMPIRISM;
     }
