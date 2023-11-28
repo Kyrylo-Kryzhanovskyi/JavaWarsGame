@@ -1,4 +1,4 @@
 package task.game;
 
-public interface Warrior extends HasHealth, CanAcceptDamage, CanHit{
+public interface Warrior extends CanAcceptDamage, CanHit{
 }

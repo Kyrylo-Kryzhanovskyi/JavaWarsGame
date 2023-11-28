@@ -1,21 +1,23 @@
 package task.game;
 
-import java.util.ArrayDeque;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
-import java.util.Queue;
+import java.util.*;
 import java.util.function.Supplier;
 
 public class Army implements Iterable<Warrior> {
     private static int idCounter;
-    private final Queue<Warrior> troops = new ArrayDeque<>();
+    private final Deque<WarriorInArmyImpl> troops = new ArrayDeque<>();
     private final int id = ++idCounter;
+
     public Army addUnits(WarriorClasses warriorClasses, int quantity) {
         return addUnits(warriorClasses::make, quantity);
     }
     public Army addUnits(Supplier<Warrior> warriorFactory, int quantity) {
         for (int i = 0; i < quantity; i++) {
-            troops.add(warriorFactory.get());
+            Warrior warrior = warriorFactory.get();
+            var warriorInArmy = new WarriorInArmyImpl(warrior);
+            var last = troops.peekLast();
+            if (last != null) last.setWarriorBehind(warriorInArmy);
+            troops.add(warriorInArmy);
         }
         return this;
     }
@@ -47,5 +49,48 @@ public class Army implements Iterable<Warrior> {
             return troops.peek();
         }
     }
+    private static class WarriorInArmyImpl implements WarriorInArmy{
+        final Warrior warrior;
+        WarriorInArmy warriorBehind;
+        public WarriorInArmyImpl(Warrior warrior) {
+            this.warrior = Objects.requireNonNull(warrior);
+        }
+        private void setWarriorBehind(WarriorInArmy warriorBehind) {
+            this.warriorBehind = Objects.requireNonNull(warriorBehind);
+        }
+        @Override
+        public Optional<WarriorInArmy> getWarriorBehind() {
+            return Optional.ofNullable(warriorBehind);
+        }
 
+        @Override
+        public void acceptDamage(int damage) {
+            warrior.acceptDamage(damage);
+        }
+
+        @Override
+        public void hit(CanAcceptDamage enemy) {
+            warrior.hit(enemy);
+        }
+
+        @Override
+        public int getAttack() {
+            return warrior.getAttack();
+        }
+
+        @Override
+        public int getHealth() {
+            return warrior.getHealth();
+        }
+
+        @Override
+        public boolean isAlive() {
+            return warrior.isAlive();
+        }
+
+        @Override
+        public String toString() {
+            return warrior.toString();
+        }
+    }
 }
