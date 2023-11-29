@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static task.game.Game.fight;
+import static task.game.Game.straightFight;
 import static task.game.WarriorClasses.*;
 
 public class ArmyTest {

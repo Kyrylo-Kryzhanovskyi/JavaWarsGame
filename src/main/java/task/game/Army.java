@@ -21,7 +21,18 @@ public class Army implements Iterable<Warrior> {
         }
         return this;
     }
-
+//    void removeDeads(){
+//
+//        var it = troops.iterator();
+//        while (it.hasNext()) {
+//            if (!it.next().isAlive()){
+//                it.remove();
+//            }
+//        }
+//    }
+    public boolean isEmpty(){
+        return !new FirstAliveIterator().hasNext();
+    }
     @Override
     public String toString() {
         return "Army#" + id +
@@ -31,6 +42,10 @@ public class Army implements Iterable<Warrior> {
 
     @Override
     public Iterator<Warrior> iterator() {
+        return troops.stream().filter(Warrior::isAlive).map(WarriorInArmyImpl::unwrap).iterator();
+    }
+
+    public Iterator<Warrior> firstAliveIterator() {
         return new FirstAliveIterator();
     }
     private class FirstAliveIterator implements Iterator<Warrior> {
@@ -49,6 +64,7 @@ public class Army implements Iterable<Warrior> {
             return troops.peek();
         }
     }
+
     enum  ChampionDealsHit implements Command {
        INSTANCE
     }
@@ -65,7 +81,9 @@ public class Army implements Iterable<Warrior> {
         public Optional<WarriorInArmy> getWarriorBehind() {
             return Optional.ofNullable(warriorBehind);
         }
-
+        Warrior unwrap(){
+            return warrior;
+        }
         @Override
         public void acceptDamage(int damage) {
             warrior.acceptDamage(damage);
