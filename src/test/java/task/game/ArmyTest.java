@@ -247,6 +247,76 @@ void test18() {
     assertFalse(fight(army_1, army_2));
 }
     @Test
+    @DisplayName("19. Battle_StraightFight: army of 5 Lancer, 3 Vampire, 4 Warriors, 2 Defenders vs army of 4 Warriors, 4 Defenders,  6 Vampire, 5 Lancer; first lose")
+    void test19() {
+        var army1 = new Army()
+                .addUnits(LANCER, 5)
+                .addUnits(VAMPIRE, 3)
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 2);
+        var army2 = new Army()
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 4)
+                .addUnits(VAMPIRE, 6)
+                .addUnits(LANCER, 5);
+        assertFalse(straightFight(army1, army2));
+    }
+
+    @Test
+    @DisplayName("20. Battle_StraightFight: army of 7 Lancer, 3 Vampire, 4 Warriors, 2 Defenders vs army of 4 Warriors, 4 Defenders,  6 Vampire, 4 Lancer; first win")
+    void test20() {
+        var army1 = new Army()
+                .addUnits(LANCER, 7)
+                .addUnits(VAMPIRE, 3)
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 2);
+        var army2 = new Army()
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 4)
+                .addUnits(VAMPIRE, 6)
+                .addUnits(LANCER, 4);
+        assertTrue(straightFight(army1, army2));
+    }
+
+    @Test
+    @DisplayName("21. Battle_StraightFight: army of 7 Lancer, 3 Vampire, 1 healer, 4 Warriors, 1 healer, 2 Defenders vs army of 4 Warriors, 4 Defenders, 1 healer,  6 Vampire, 4 Lancer; first lose")
+    void test21() {
+        var army1 = new Army()
+                .addUnits(LANCER, 7)
+                .addUnits(VAMPIRE, 3)
+                .addUnits(HEALER, 1)
+                .addUnits(WARRIOR, 4)
+                .addUnits(HEALER, 1)
+                .addUnits(DEFENDER, 2);
+        var army2 = new Army()
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 4)
+                .addUnits(HEALER, 1)
+                .addUnits(VAMPIRE, 6)
+                .addUnits(LANCER, 4);
+        assertFalse(straightFight(army1, army2));
+    }
+
+    @Test
+    @DisplayName("22. Battle_StraightFight:army of 4 Lancer, 3 Warriors, 1 healer, 4 Warriors, 1 healer, 2 Knights vs army of 4 Warriors, 4 Defenders, 1 healer,  2 Vampire, 4 Lancer; first win")
+    void test22() {
+        var army1 = new Army()
+                .addUnits(LANCER, 4)
+                .addUnits(WARRIOR, 3)
+                .addUnits(HEALER, 1)
+                .addUnits(WARRIOR, 4)
+                .addUnits(HEALER, 1)
+                .addUnits(KNIGHT, 2);
+        var army2 = new Army()
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 4)
+                .addUnits(HEALER, 1)
+                .addUnits(VAMPIRE, 2)
+                .addUnits(LANCER, 4);
+        assertTrue(straightFight(army1, army2));
+    }
+
+    @Test
     void lancerArmySmokeTest() {
         var my_army = new Army ()
                 .addUnits(DEFENDER, 2)

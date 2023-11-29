@@ -49,6 +49,9 @@ public class Army implements Iterable<Warrior> {
             return troops.peek();
         }
     }
+    enum  ChampionDealsHit implements Command {
+       INSTANCE
+    }
     private static class WarriorInArmyImpl implements WarriorInArmy{
         final Warrior warrior;
         WarriorInArmy warriorBehind;
@@ -68,9 +71,21 @@ public class Army implements Iterable<Warrior> {
             warrior.acceptDamage(damage);
         }
 
+        void passCommand(Command command, WarriorInArmy passer){
+            if(passer != this){
+                if(command instanceof ChampionDealsHit &&
+                        warrior instanceof CanHeal healer){
+                    healer.heal(passer);
+                }
+            }
+            getWarriorBehind().ifPresent(
+                    w -> ((WarriorInArmyImpl) w).passCommand(command, this)
+            );
+        }
         @Override
         public void hit(CanAcceptDamage enemy) {
             warrior.hit(enemy);
+            passCommand(ChampionDealsHit.INSTANCE, this);
         }
 
         @Override
