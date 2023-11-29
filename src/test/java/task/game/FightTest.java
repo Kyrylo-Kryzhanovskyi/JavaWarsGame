@@ -99,6 +99,34 @@ class FightTest {
         fight(unit1, unit2);
         assertTrue(fight(unit1, unit3));
     }
+    @Test
+    @DisplayName("10. Fight: MegaMan vs Defender; first win")
+    void test10() {
+        var unit1 = MEGAMAN.make();
+        var unit2 = DEFENDER.make();
+        assertTrue(fight(unit1, unit2));
+    }
+    @Test
+    @DisplayName("11. Fight: MegaMan vs Healer; first win")
+    void test11() {
+        var unit1 = MEGAMAN.make();
+        var unit2 = HEALER.make();
+        assertTrue(fight(unit1, unit2));
+    }
+    @Test
+    @DisplayName("12. Fight: Vampire vs MegaMan; first lose")
+    void test12() {
+        var unit1 = VAMPIRE.make();
+        var unit2 = MEGAMAN.make();
+        assertFalse(fight(unit1, unit2));
+    }
+    @Test
+    @DisplayName("13. Fight: Knight vs MegaMan; first lose")
+    void test13() {
+        var unit1 = KNIGHT.make();
+        var unit2 = MEGAMAN.make();
+        assertFalse(fight(unit1, unit2));
+    }
 
     @Test
     @DisplayName("SmokeTestDefVam: Defender vs Vampire; Defender win, hp defender=22, hp vampire=-1")

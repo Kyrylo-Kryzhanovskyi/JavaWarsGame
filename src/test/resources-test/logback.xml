@@ -12,7 +12,7 @@
     </appender>
 
     <logger name = "task.game.GameTest" level="info"/>
-    <logger name = "task.game.CanHit" level="off"/>
+    <logger name = "task.game.CanHit" level="info"/>
 
     <root level="all">
         <appender-ref ref="STDOUT"/>

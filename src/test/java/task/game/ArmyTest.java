@@ -316,7 +316,51 @@ void test18() {
                 .addUnits(LANCER, 4);
         assertTrue(straightFight(army1, army2));
     }
+    @Test
+    @DisplayName("23. Battle_StraightFight:army of 1 MegaMan vs army of 4 Warriors, 4 Defenders, 1 healer,  2 Vampire, 4 Lancer; first win")
+    void test23() {
+        var army1 = new Army()
+                .addUnits(MEGAMAN, 1);
 
+        var army2 = new Army()
+                .addUnits(WARRIOR, 4)
+                .addUnits(DEFENDER, 4)
+                .addUnits(HEALER, 1)
+                .addUnits(VAMPIRE, 2)
+                .addUnits(LANCER, 4);
+        assertTrue(straightFight(army1, army2));
+    }
+    @Test
+    @DisplayName("24. Battle_StraightFight:army1 vs army2 ; first lose")
+    void test24() {
+        var army1 = new Army()
+                .addUnits(WARRIOR, 2)
+                .addUnits(MEGAMAN, 1)
+                .addUnits(HEALER, 1);
+
+        var army2 = new Army()
+                .addUnits(LANCER, 1)
+                .addUnits(HEALER, 1)
+                .addUnits(KNIGHT, 5)
+                .addUnits(HEALER, 1);
+        assertFalse(straightFight(army1, army2));
+    }
+    @Test
+    @DisplayName("25. Battle_StraightFight:army1 vs army2 ; first win")
+    void test25() {
+        var army1 = new Army()
+                .addUnits(WARRIOR, 3)
+                .addUnits(HEALER, 1)
+                .addUnits(VAMPIRE, 2)
+                .addUnits(MEGAMAN, 1);
+
+        var army2 = new Army()
+                .addUnits(LANCER, 1)
+                .addUnits(HEALER, 1)
+                .addUnits(KNIGHT, 5)
+                .addUnits(HEALER, 1);
+        assertTrue(straightFight(army1, army2));
+    }
     @Test
     void lancerArmySmokeTest() {
         var my_army = new Army ()

@@ -7,6 +7,7 @@ public class HealerImpl extends AbstractWarrior implements CanHeal {
     public HealerImpl() {
         super(INITIAL_HEALTH);
     }
+    @Override
     public int getHealPower() {
         return HEAL_POWER;
     }
