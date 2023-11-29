@@ -127,6 +127,20 @@ class FightTest {
         var unit2 = MEGAMAN.make();
         assertFalse(fight(unit1, unit2));
     }
+    @Test
+    @DisplayName("14. Fight: Witch vs DEFENDER; first lose")
+    void test14() {
+        var unit1 = WITCH.make();
+        var unit2 = DEFENDER.make();
+        assertFalse(fight(unit1, unit2));
+    }
+    @Test
+    @DisplayName("15. Fight: Witch vs Healer; first win")
+    void test15() {
+        var unit1 = WITCH.make();
+        var unit2 = WITCH.make();
+        assertTrue(fight(unit1, unit2));
+    }
 
     @Test
     @DisplayName("SmokeTestDefVam: Defender vs Vampire; Defender win, hp defender=22, hp vampire=-1")

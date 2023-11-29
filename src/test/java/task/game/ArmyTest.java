@@ -317,7 +317,7 @@ void test18() {
         assertTrue(straightFight(army1, army2));
     }
     @Test
-    @DisplayName("23. Battle_StraightFight:army of 1 MegaMan vs army of 4 Warriors, 4 Defenders, 1 healer,  2 Vampire, 4 Lancer; first win")
+    @DisplayName("23. Battle:army of 1 MegaMan vs army of 4 Warriors, 4 Defenders, 1 healer,  2 Vampire, 4 Lancer; first win")
     void test23() {
         var army1 = new Army()
                 .addUnits(MEGAMAN, 1);
@@ -328,10 +328,10 @@ void test18() {
                 .addUnits(HEALER, 1)
                 .addUnits(VAMPIRE, 2)
                 .addUnits(LANCER, 4);
-        assertTrue(straightFight(army1, army2));
+        assertTrue(fight(army1, army2));
     }
     @Test
-    @DisplayName("24. Battle_StraightFight:army1 vs army2 ; first lose")
+    @DisplayName("24. Battle:army1 vs army2 ; first lose")
     void test24() {
         var army1 = new Army()
                 .addUnits(WARRIOR, 2)
@@ -343,10 +343,10 @@ void test18() {
                 .addUnits(HEALER, 1)
                 .addUnits(KNIGHT, 5)
                 .addUnits(HEALER, 1);
-        assertFalse(straightFight(army1, army2));
+        assertFalse(fight(army1, army2));
     }
     @Test
-    @DisplayName("25. Battle_StraightFight:army1 vs army2 ; first win")
+    @DisplayName("25. Battle:army1 vs army2 ; first win")
     void test25() {
         var army1 = new Army()
                 .addUnits(WARRIOR, 3)
@@ -359,7 +359,20 @@ void test18() {
                 .addUnits(HEALER, 1)
                 .addUnits(KNIGHT, 5)
                 .addUnits(HEALER, 1);
-        assertTrue(straightFight(army1, army2));
+        assertTrue(fight(army1, army2));
+    }
+    @Test
+    @DisplayName("26. Battle:army1 vs army2 ; first win")
+    void test26() {
+        var army1 = new Army()
+                .addUnits(WARRIOR,1)
+                .addUnits(WITCH, 3);
+
+        var army2 = new Army()
+                .addUnits(WARRIOR, 1)
+                .addUnits(WITCH, 1);
+
+        assertTrue(fight(army1, army2));
     }
     @Test
     void lancerArmySmokeTest() {

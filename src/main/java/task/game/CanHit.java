@@ -10,4 +10,5 @@ public interface CanHit extends HasAttack{
         log.info("Warrior {} hits {}", this, enemy);
         enemy.acceptDamage(getAttack());
     }
+
 }
